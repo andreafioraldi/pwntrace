@@ -1,6 +1,16 @@
 # pwntrace
 Use ltrace with pwnlib.tubes.process instances, useful for heap exploitation
 
+## Install
+
+pwntrace is on PyPI:
+
+```
+$ pip install pwntrace
+```
+
+I suggest you to use a vitualenv to work with pwntools.
+
 ## Api
 
 ltrace:
