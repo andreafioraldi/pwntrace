@@ -3,12 +3,13 @@ Use ltrace with pwnlib.tubes.process instances, useful for heap exploitation
 
 ## Api
 
+ltrace:
 + `p = ltrace(argv, functions, ...)` create a modified instace of pwnlib.tubes.process for ltrace
 + `p.get_trace()` get trace output
 + `print_trace(trace)` pretty print p.get_trace or p.trace_now return value
 + `p.trace_now()` get_trace + print_trace
 
-
+heap_ltrace:
 + `p = heap_ltrace(argv, ...)` create a modified instace of pwnlib.tubes.process for ltrace malloc and free
 + `p.get_trace()` get trace output
 + `print_heap_trace(heap_trace)`
@@ -29,7 +30,6 @@ Use ltrace with pwnlib.tubes.process instances, useful for heap exploitation
 [*] Process '/usr/bin/ltrace' stopped with exit code 0 (pid 8737)
 'LICENSE  pwntrace  README.md\n'
 >>> p.trace_now()
-[*] Process '/bin/cat' stopped with exit code 0 (pid 8736)
  <trace> ls->fflush(0x7efc8f6a0620) = 0
  <trace> ls->fclose(0x7efc8f6a0620) = 0
  <trace> ls->fflush(0x7efc8f6a0540) = 0
@@ -42,7 +42,6 @@ Use ltrace with pwnlib.tubes.process instances, useful for heap exploitation
 [x] Starting local process '/usr/bin/ltrace'
 [+] Starting local process '/usr/bin/ltrace': pid 9694
 >>> p.trace_now()
-[*] Process '/bin/cat' stopped with exit code 0 (pid 9693)
  <trace> malloc(1276) = 0x12ec010
  <trace> malloc(64) = 0x12ec520
  <trace> malloc(1292) = 0x12ec570
@@ -90,3 +89,7 @@ Use ltrace with pwnlib.tubes.process instances, useful for heap exploitation
  addr: 0x12efe20	size:24
 
 ```
+
+### Dedication
+
+In loving memory of malloc_hook

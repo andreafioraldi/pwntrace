@@ -36,10 +36,15 @@ def ltrace(argv, functions, env=None, shell=False, **kwargs):
 		p = process(["ltrace", "-e", func_list, "-o", fifo_name] + argv, env=env, shell=shell, **kwargs)
 	
 	def get_trace():
+		ll = context.log_level
+		context.log_level = "warning"
 		try:
 			r = p.tracer_output.recv()
 		except EOFError:
+			context.log_level = ll
 			return None
+		context.log_level = ll
+		
 		lines = r.split("\n")
 		ret = []
 		for l in lines:
